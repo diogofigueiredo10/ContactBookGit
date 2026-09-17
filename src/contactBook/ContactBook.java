@@ -111,4 +111,12 @@ public class ContactBook {
         return contacts[currentContact++];
     }
 
+    public int getByPhoneNumber(int phone) {
+        int i = 0;
+        int result = -1;
+        for(i = 0; i < counter; i++){
+            //acabar
+        }
+    }
+
 }
