@@ -24,6 +24,24 @@ public class ContactBook {
         return counter;
     }
 
+    public boolean hasDoubles() {
+        int[] phones = new int[contacts.length];
+        for (int i = 0; i < contacts.length; i++) {
+            int phone = contacts[i].getPhone();
+            if (hasPhone(phone, phones)) {
+                return true;
+            } else phones[i] = phone;
+        }
+        return false;
+    }
+
+    public boolean hasPhone (int p, int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == p) return true;
+        }
+        return false;
+    }
+
     //Pre: name!= null && !hasContact(name)
     public void addContact(String name, int phone, String email) {
         if (counter == contacts.length)
