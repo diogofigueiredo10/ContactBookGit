@@ -117,6 +117,7 @@ public class ContactBook {
         for(i = 0; i < counter; i++){
             //acabar
         }
+        return 0;
     }
 
 }
