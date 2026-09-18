@@ -13,8 +13,10 @@ public class Main {
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
-    public static final String QUIT           = "Q";
+    public static final String GET_BY_NUMBER  = "GN";
     public static final String FIND_DOUBLES  = "EP";
+    public static final String QUIT           = "Q";
+
 
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
@@ -25,6 +27,7 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String PHONE_NOT_EXIST = "Phone number does not exist.";
     public static final String DOUBLE_FOUND  = "There are contacts that share phone numbers.";
     public static final String NO_DOUBLES  = "All contacts have different phone numbers.";
 
@@ -56,6 +59,9 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                    case GET_BY_NUMBER:
+                        getByNumber(in, cBook);
+                        break;
                 case FIND_DOUBLES:
                     findDoubles(cBook);
                     break;
@@ -152,6 +158,15 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void getByNumber(Scanner in, ContactBook cBook)  {
+        int phone;
+        phone = in.nextInt();
+        if(cBook.getNameByNumber(phone) != null) {
+            System.out.println(cBook.getNameByNumber(phone));
+        } else
+            System.out.println(PHONE_NOT_EXIST);
     }
 
     private static void findDoubles(ContactBook cBook) {
