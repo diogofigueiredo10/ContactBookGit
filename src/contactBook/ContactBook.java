@@ -2,6 +2,8 @@ package contactBook;
 
 import contactBook.Contact;
 
+import java.util.Iterator;
+
 public class ContactBook {
     static final int DEFAULT_SIZE = 100;
 
@@ -25,8 +27,8 @@ public class ContactBook {
     }
 
     public boolean hasDoubles() {
-        int[] phones = new int[contacts.length];
-        for (int i = 0; i < contacts.length; i++) {
+        int[] phones = new int[counter];
+        for (int i = 0; i < counter; i++) {
             int phone = contacts[i].getPhone();
             if (hasPhone(phone, phones)) {
                 return true;
@@ -42,15 +44,6 @@ public class ContactBook {
         return false;
     }
 
-    public String getNameByNumber(int number) {
-        int result = -1;
-        for (int i = 0; i < contacts.length; i++) {
-            if (contacts[i].getPhone() == number && result == -1) {
-                return contacts[i].getName();
-            }
-        }
-        return null;
-    }
 
     //Pre: name!= null && !hasContact(name)
     public void addContact(String name, int phone, String email) {
@@ -121,13 +114,14 @@ public class ContactBook {
         return contacts[currentContact++];
     }
 
-    public int getByPhoneNumber(int phone) {
-        int i = 0;
-        int result = -1;
-        for(i = 0; i < counter; i++){
-            //acabar
+    public String getByPhoneNumber(int phone) {
+        initializeIterator();
+        while (hasNext()){
+            Contact tmp = next();
+            if (tmp.getPhone()==phone)
+                return tmp.getName();
         }
-        return 0;
+        return null;
     }
 
 }

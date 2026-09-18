@@ -59,9 +59,9 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
-                    case GET_BY_NUMBER:
-                        getByNumber(in, cBook);
-                        break;
+                case GET_BY_NUMBER:
+                    getByNumber(in,cBook);
+                    break;
                 case FIND_DOUBLES:
                     findDoubles(cBook);
                     break;
@@ -161,17 +161,18 @@ public class Main {
     }
 
     private static void getByNumber(Scanner in, ContactBook cBook)  {
-        int phone;
-        phone = in.nextInt();
-        if(cBook.getNameByNumber(phone) != null) {
-            System.out.println(cBook.getNameByNumber(phone));
-        } else
+        int phone =  in.nextInt();
+        in.nextLine();
+        String contactName = cBook.getByPhoneNumber(phone);
+        if (contactName != null) {
+            System.out.println(contactName);
+        }else
             System.out.println(PHONE_NOT_EXIST);
     }
 
     private static void findDoubles(ContactBook cBook) {
-        if (cBook.hasDoubles()) {
+        if (cBook.hasDoubles())
             System.out.println(DOUBLE_FOUND);
-        } else System.out.println(NO_DOUBLES);
+        else System.out.println(NO_DOUBLES);
     }
 }
